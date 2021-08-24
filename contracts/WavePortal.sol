@@ -6,28 +6,35 @@ import "hardhat/console.sol";
 
 contract WavePortal {
 	uint totalWaves;
-	address biggestWaveAddy;
+
+	event NewWave(address indexed from, uint timestamp, string message);
+
+	struct Wave {
+		address waver;
+		string message;
+		uint timestamp;
+	}
+
+	Wave[] waves;
+
 	constructor() {
-		console.log("WavePortal created");
+		console.log("We have been constructed!");
 	}	
 
-	function wave() public {
+	function wave(string memory _message) public {
 		totalWaves += 1;
-		console.log("%s is waved!", msg.sender);
+		console.log("%s waved w/ message %s", msg.sender, _message);
+
+		waves.push(Wave(msg.sender, _message, block.timestamp));
+
+		emit NewWave(msg.sender, block.timestamp, _message);
 	}
 
-	function scoreBiggestWave() public {
-		biggestWaveAddy = msg.sender;
-		console.log("%s scored the biggest wave!", biggestWaveAddy);
+	function getAllWaves() view public returns (Wave[] memory) {
+		return waves;
 	}
 
-	function getTotalWaves() public view returns (uint) {
-		console.log("We have %d total waves", totalWaves);
+	function getTotalWaves() view public returns (uint) {
 		return totalWaves;
-	}
-
-	function getBiggestWave() public view returns (address) {
-		console.log("We have %s as the biggest wave recorded", biggestWaveAddy);
-		return biggestWaveAddy;
 	}
 }

@@ -1,33 +1,22 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const [owner, randoPerson] = await ethers.getSigners();
   const waveContractFactory = await ethers.getContractFactory("WavePortal");
   const waveContract = await waveContractFactory.deploy();
+  await waveContract.deployed;
+  console.log("Contract addy:", waveContract.address);
 
-  await waveContract.deployed();
-  console.log("Contract deployed to:", waveContract.address);
-  console.log("Contract deployed by:", owner.address);
+  const count = await waveContract.getTotalWaves();
+  console.log(count.toNumber());
 
-  await waveContract.getTotalWaves();
-
-  const waveTxn = await waveContract.wave();
+  const waveTxn = await waveContract.wave("A message!");
   await waveTxn.wait();
 
-  await waveContract.getTotalWaves();
+  const waveTxn2 = await waveContract.wave("Another message!");
+  await waveTxn2.wait();
 
-  const randoWaveTxn = await waveContract.connect(randoPerson).wave();
-  await randoWaveTxn.wait();
-
-  await waveContract.getTotalWaves();
-
-  // Custom solidity code
-  const randoBiggestWave = await waveContract
-    .connect(randoPerson)
-    .scoreBiggestWave();
-  await randoBiggestWave.wait();
-
-  await waveContract.getBiggestWave();
+  const allWaves = await waveContract.getAllWaves();
+  console.log(allWaves);
 }
 
 main()
