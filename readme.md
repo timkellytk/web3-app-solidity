@@ -8,4 +8,6 @@ You can play with the smart contract by the following instructions [here](https:
 
 [![Ethereum App Preview](./app.png)](https://timkellytk.github.io/web3-app-solidity-ui/)
 
+[Play with the smart contract](https://timkellytk.github.io/web3-app-solidity-ui/)
+
 Inspired by a [BuildSpace](https://buildspace.so/) tutorial.
