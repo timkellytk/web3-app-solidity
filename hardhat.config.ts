@@ -1,7 +1,10 @@
+import dotenv from "dotenv";
 import { task } from "hardhat/config";
 import "@typechain/hardhat";
 import "@nomiclabs/hardhat-ethers";
 import "@nomiclabs/hardhat-waffle";
+
+dotenv.config();
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -23,10 +26,8 @@ export default {
   solidity: "0.8.4",
   networks: {
     rinkeby: {
-      url: "https://eth-rinkeby.alchemyapi.io/v2/w_AoJYhD5DbzIGrpXrB1o9mZlADOXl1K",
-      accounts: [
-        "7ccff67cd28c46146c4d275c09aa3e5417e265286d3f76f464eb7672f0e546aa",
-      ],
+      url: process.env.ALCHEMY_HTTP_KEY,
+      accounts: [process.env.PRIVATE_RINKEBY_ACCOUNT_KEY],
     },
   },
 };

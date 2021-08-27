@@ -15,12 +15,14 @@ async function main() {
 
   const waveTxn = await waveContract.wave("A message!");
   await waveTxn.wait();
+  const waveTxn2 = await waveContract.wave("A message2!");
+  await waveTxn2.wait();
 
   const updatedContractBalance = await ethers.provider.getBalance(
     waveContract.address
   );
   console.log(
-    "Contrat balance: ",
+    "Contract balance: ",
     ethers.utils.formatEther(updatedContractBalance)
   );
 
