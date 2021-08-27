@@ -6,4 +6,6 @@ The smart contract is available on the Ethereum Rinkeby testnet. The contract ad
 
 You can play with the smart contract by the following instructions [here](https://timkellytk.github.io/web3-app-solidity-ui/). You can see the repo for the UI [here](https://github.com/timkellytk/web3-app-solidity-ui).
 
+[![Ethereum App Preview](./app.png)](https://timkellytk.github.io/web3-app-solidity-ui/)
+
 Inspired by a [BuildSpace](https://buildspace.so/) tutorial.
